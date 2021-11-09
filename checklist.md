@@ -23,6 +23,6 @@ Your index.html file contains:
     - [X] E-Mail Address
     - [X] Street
     - [X] House Number (only allowing numbers in this field)
-    - [ ] Gender (male, female, do not wish to provide as radio buttons)
-- [ ] A button to place the order
-- [ ] Ensure the website loads when opening http://localhost:8080/
+    - [X] Gender (male, female, do not wish to provide as radio buttons)
+- [X] A button to place the order
+- [X] Ensure the website loads when opening http://localhost:8080/
