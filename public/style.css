@@ -1,1 +1,27 @@
 /*empty*/
+
+body {
+	font-family: "Calibri", sans-serif;
+	font-size: 1.2em;
+}
+
+.allergy{
+	font-weight: Bold;
+}
+
+#BurgerSelect {
+	color: white;
+	background-color: black;	
+}
+
+button:hover {
+	background-color: DarkOrchid;
+}
+button {
+	margin: 5px 15px 5px 15px;
+}
+
+section {
+	margin: 0px 10px 0px 10px;
+	padding: 10px 10px 20px; 
+}

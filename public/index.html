@@ -3,24 +3,25 @@
    <head>
        <title>BestofBurgers</title>
        <meta charset="utf-8"/>
+       <link rel="stylesheet" type="text/css" href="style.css">
    </head>
    <body>
       <header>
         <h1>Welcome to the Best of Burgers</h1>
       </header>
       <main>
-        <section>
+        <section id="BurgerSelect";>
           <h2>Pick your poison</h2>
-          <p>Our burgers are packed with everything a burger should have; fat, carbs and fantastic taste</p>
+          <p>Our burgers are packed with everything a burger should have; fat, carbs and fantastic taste!</p>
           <!The different burgers>
 
-          <div style="float:left;">
+          <div style="float:left; clear:right;">
               <h3>The Burning Burger</h3>
               <img src="https://assets.icanet.se/e_sharpen:80,q_auto,dpr_1.25,w_718,h_718,c_lfill/imagevaultfiles/id_217089/cf_259/smash_burger.jpg" alt="The Burning Burger" title="A spicy dubble paddy burger" style=height:200px;>
               <!information about the burger in a list>
               <u1>
                 <li> 1000 kCal </li>
-                <li> Contains onion </li>
+                <li> Contains <al class="allergy">onion</al> </li>
                 <li> CONTAINS FIRE! </li>
               </ul>
           </div>
@@ -30,7 +31,7 @@
               <img src="https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F9%2F2021%2F07%2F13%2FUltimate-Veggie-Burgers-FT-Recipe-0821.jpg&q=85" alt="The Broken Burger " title="Calorie packed turkey burger" style="height:200px;">
               <u1>
                 <li> 1500 kCal </li>
-                <li> Contains vitamins </li>
+                <li> Contains <al class="allergy"> vitamins </al> </li>
                 <li> Contains Thanksgiving leftovers! </li>
               </ul>
           </div>
@@ -40,16 +41,15 @@
               <img src="https://images.immediate.co.uk/production/volatile/sites/2/2020/04/Cheesburger-01e0a43.jpg?quality=90&resize=768,574" alt="The Bleeding Burger" title="Literally dripping with cheese" style=height:200px;>
               <u1>
                 <li> 2000(!) kCal </li>
-                <li> Contains lactose </li>
+                <li> Contains <al class="allergy">lactose</al> </li>
                 <li> Contains all the calories you need in a day </li>
               </ul>
           </div>
 
         </section>
-        <section >
+        <section id="CustomerInfo";>
           <h2>Customer Information </h2>
           <p>Please provide the following information</p>
-
           <p>
               <label for="Name">Full Name</label><br>
               <input type="text" id="Name" name="fn" required="required" placeholder="First- and Last name">
