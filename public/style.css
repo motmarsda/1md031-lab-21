@@ -5,23 +5,70 @@ body {
 	font-size: 1.2em;
 }
 
-.allergy{
-	font-weight: Bold;
+section {
+	margin: 0em 1.1em 0em 1.1em;
+	padding: 1.1em 1.1em 1.1em;
 }
 
-#BurgerSelect {
-	color: white;
-	background-color: black;	
+button {
+	margin: 0.6em 1.7em 0.6em 1.7em;
 }
 
 button:hover {
 	background-color: DarkOrchid;
 }
-button {
-	margin: 5px 15px 5px 15px;
+
+.allergy{
+	font-weight: Bold;
 }
 
-section {
-	margin: 0px 10px 0px 10px;
-	padding: 10px 10px 20px; 
+.Burger {
+	padding: 1.1em 1.1em 2.2em
 }
+
+.Title {
+	height: 10em;
+	overflow:hidden;
+	margin-right: 1.1em;
+	margin-left: 1.1em;
+}
+
+
+header > h1 {
+	position: absolute;
+	padding: 7em 1.1em 7em;
+	margin-top: -10em;
+}
+
+header > img {
+	opacity: 0.80;
+	width: 100%;
+	height: auto;
+}
+
+#BurgerSelect {
+	color: DarkGreen;
+	background-color: BurlyWood;
+	border:0.1em Dashed Black;	
+}
+
+#CustomerInfo {
+	border: 0.1em Dashed CadetBlue;
+	color: CadetBlue;
+}
+
+/* Replacing the float */
+
+.wrapper {
+     display: grid;
+     grid-gap: 0.4em;
+     grid-template-columns: 33% 33% 33%;
+ }
+
+ .box {
+     border-radius: 0.4em;
+     padding: 0.4em;
+ }
+
+
+
