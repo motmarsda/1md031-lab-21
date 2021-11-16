@@ -1,10 +1,5 @@
 <template>
-  <div>
-    Burgers
-    <Burger v-for="burger in burgers"
-            v-bind:burger="burger"
-            v-bind:key="burger.name"/>
-  </div>
+
   <div id="map" v-on:click="addOrder">
     click here
   </div>
@@ -19,43 +14,10 @@
       <p>Our burgers are packed with everything a burger should have; fat, carbs and fantastic taste!</p>
       <!-- The different burgers -->
       <div class="wrapper">
-        <div class = "Burger; box a" >
-            <h3>The Burning Burger</h3>
-            <img src="https://www.kitchensanctuary.com/wp-content/uploads/2021/05/Double-Cheeseburger-square-FS-42.jpg" alt="The Burning Burger" title="A spicy dubble paddy burger" style="height:11em;">
-            <!-- CHANGED added quotation mark -->
-            <!-- information about the burger in a list -->
-            <u1>
-              <li> 1000 kCal </li>
-              <li> Contains <al class="allergy">onion</al> </li>
-              <li> CONTAINS FIRE! </li>
-            </u1>
-            <!-- changes end tag -->
-        </div>
-
-        <div class = "Burger; box b">
-            <h3>The Broken Burger</h3>
-            <img src="https://i2-prod.liverpoolecho.co.uk/incoming/article16554288.ece/ALTERNATES/s1200b/0_KFC-biggest-burger-UK-1676790.jpg" alt="The Broken Burger " title="Calorie packed turkey burger" style="height:11em;">
-            <u1>
-              <li> 1200 kCal </li>
-              <li> Contains <al class="allergy"> vitamins </al> </li>
-              <li> Contains Thanksgiving leftovers! </li>
-            </u1>
-            <!-- changes end tag -->
-        </div>
-
-        <div class ="Burger; box c">
-            <h3>The Bleeding Burger </h3>
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSKkVVnVelSVQn5udkotyToGxWT3k82h2Nugg&usqp=CAU" alt="The Bleeding Burger" title="Literally dripping with cheese" style="height:11em;">
-            <!-- CHANGED added quotation mark -->
-            <u1>
-              <li> 2000 kCal </li>
-              <li> Contains <al class="allergy">lactose</al> </li>
-              <li> Contains all the calories you need in a day </li>
-            </u1>
-            <!-- changes end tag -->
-        </div>
+        <Burger v-for="burger in burgers"
+              v-bind:burger="burger"
+              v-bind:key="burger.name"/>
       </div>
-
     </section>
 
     <section id="CustomerInfo">
@@ -229,9 +191,5 @@ export default {
     grid-template-columns: 33% 33% 33%;
   }
 
-  .box {
-    border-radius: 0.4em;
-    padding: 0.4em;
-  }
 
 </style>
