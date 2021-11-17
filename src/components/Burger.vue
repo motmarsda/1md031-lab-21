@@ -4,16 +4,16 @@
       <h3 v-bind:key="burger.name"> {{ burger.name }} </h3>
       <img v-bind:src="burger.imageURL" style="height:11em;">
       <!--information about the burger in a list -->
-      <u1>
-        <li v-bind:key="burger.calories"> {{ burger.calories }} kCal </li>
-        <li v-bind:key="burger.content" > Contains <span class="allergy">{{ burger.content }}</span> </li>
-        <li v-bind:key="burger.descript"> {{ burger.descript }} </li>
-      </u1>
+      <ul>
+        <li v-bind:kcal="burger.calories"> {{ burger.calories }} kCal </li>
+        <li v-bind:cont="burger.content" > Contains <span class="allergy">{{ burger.content }}</span> </li>
+        <li v-bind:desc="burger.descript"> {{ burger.descript }} </li>
+      </ul>
       <button type="button" v-on:click="subFromOrder">
           <img src="https://cdn3.vectorstock.com/i/1000x1000/13/82/left-arrow-icon-vector-21641382.jpg" style = "height:1em;">
       </button>
       <span> {{ amountOrdered }}</span>
-      <button type="buttom" v-on:click="addToOrder()">
+      <button type="button" v-on:click="addToOrder()">
           <img src="https://cdn1.vectorstock.com/i/1000x1000/88/85/right-arrow-icon-vector-21638885.jpg" style = "height:1em;">
       </button>
   </div>
@@ -30,12 +30,17 @@ export default {
   data: function () {
     return {
       amountOrdered: 0,
+      orderedBurgers: {}
     }
   },
   methods: {
     subFromOrder: function(){
       if(this.amountOrdered>0){
-        this.amountOrdered -=1;
+        this.amountOrdered -=1,
+        this.$emit('orderedBurger', { name: this.burger.name,
+                                      amount: this.amountOrdered
+                                    }
+        );
       }
       else{
         this.amountOrdered =0;
@@ -43,7 +48,11 @@ export default {
 
     },
     addToOrder: function(){
-      this.amountOrdered +=1;
+      this.amountOrdered +=1,
+      this.$emit('orderedBurger', { name: this.burger.name,
+                                    amount: this.amountOrdered
+                                  }
+                );
     }
   }
 }

@@ -1,22 +1,22 @@
 <template>
-
-  <div id="map" v-on:click="addOrder">
-    click here
-  </div>
-
   <header>
-    <img class = "Title" id="TitleImage" src="https://thumbs.dreamstime.com/b/brick-wall-wide-panorama-masonry-wall-small-bricks-brick-wall-wide-panorama-gray-masonry-wall-small-bricks-modern-150754887.jpg">
-    <h1 class = "Title">Welcome to the Burger Wall</h1>
+    <img class = "Title" id="TitleImage" src="https://t4.ftcdn.net/jpg/02/68/91/81/240_F_268918105_USFet4mK54AfehjA7zV6M7AkfVr534ZN.jpg">
+    <!--Alternative pic: https://www.tetonart.com/wp-content/uploads/galleries/post-91/full/Bison-beneath-the-Tetons.jpg"-->
+    <!--Alternative pic: https://www.lancebcarter.com/images/xl/WY_ZI0601_005-Panorama.jpg"-->
+    <!--Alternative pic: https://i.pinimg.com/originals/55/ab/a3/55aba32097fd60bfbe104f18333a2300.png-->
+    <h1 class = "Title">Welcome to the Burger Barn</h1>
   </header>
   <main>
     <section id="BurgerSelect">
-      <h2>Pick your poison</h2>
+      <h2>What are you craving today?</h2>
       <p>Our burgers are packed with everything a burger should have; fat, carbs and fantastic taste!</p>
+      <p>We live by one motto: Noone leaves the Burger Barn hungry!</p>
       <!-- The different burgers -->
       <div class="wrapper">
         <Burger v-for="burger in burgers"
               v-bind:burger="burger"
-              v-bind:key="burger.name"/>
+              v-bind:key="burger.name"
+              v-on:orderedBurger="addToOrder($event)"/>
       </div>
     </section>
 
@@ -58,14 +58,21 @@
           <input type="radio" id="undisclose" v-model="gr" required="required" value="Undisclosed">
           <label for="undisclosed">Undisclosed</label><br>
       </p>
+      <div class="mapWrap">
+        <label> Where should the burgers be delivered?</label>
+        <div id="map" v-on:click="addOrder"></div>
+      </div>
     </section>
+
+
   </main>
   <button type="submit" v-on:click="placeOrder">
       <img src="https://cdn-icons-png.flaticon.com/512/660/660619.png" style = "height:1.5em;">
   </button>
+
   <footer>
     <!--To add special signs, use &code;-->
-    <p>&copy; 2021 Burger Wall Inc.</p>
+    <p>&copy; 2021 Burger Buildings Inc.</p>
   </footer>
 
 </template>
@@ -106,7 +113,10 @@ export default {
         sn:'',
         hn:'',
         pmt:'',
-        gr:''
+        gr:'',
+        orderedBurgers: {}, //doent output a proxyobject
+        location: { x: 0, y: 0}
+
     }
   },
   methods: {
@@ -123,19 +133,27 @@ export default {
                               }
                  );
     },
+
+    addToOrder: function (event) {
+      this.orderedBurgers[event.name] = event.amount;
+    },
+
     placeOrder: function() {
-      console.log([this.fn, this.em, this.sn, this.hn, this.pmt, this.gr])
-    }
+      console.log("Customer: " + [this.fn, this.em, this.sn, this.hn, this.pmt, this.gr]);
+      console.log("Order: " + this.orderedBurgers);
+    },
+
   }
 }
 </script>
 
 <style>
   #map {
-    width: 300px;
-    height: 300px;
-    background-color: red;
+    width: 1920px;
+    height: 1078px;
+    background: url("/img/polacks.jpg");
   }
+
 
   body{
     font-family: "Calibri", sans-serif;
@@ -153,6 +171,10 @@ export default {
 
   button:hover {
     background-color: DarkOrchid;
+  }
+
+  .mapWrap{
+    overflow: scroll;
   }
 
   .allergy{
@@ -174,7 +196,7 @@ export default {
   header > h1 {
     position: absolute;
     padding: 7em 1.1em 7em;
-    margin-top: -10em;
+    margin-top: -9em;
   }
 
   header > img {
@@ -184,14 +206,23 @@ export default {
   }
 
   #BurgerSelect {
-    color: DarkGreen;
-    background-color: BurlyWood;
+    color: WhiteSmoke;
+    background-color: SlateGrey;
     border:0.1em Dashed Black;
+  }
+
+  #BurgerSelect > h2 {
+    text-align: center;
+  }
+
+  #BurgerSelect > p {
+    text-align: center;
   }
 
   #CustomerInfo {
     border: 0.1em Dashed CadetBlue;
-    color: CadetBlue;
+    color: DarkCyan;
+    background-color: WhiteSmoke;
   }
 
   .wrapper {
