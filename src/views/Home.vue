@@ -28,20 +28,20 @@
           <input type="text" id="Name" v-model="fn" required="required" placeholder="First- and Last name">
       </p>
       <p>
-          <label for="Email">E-mail</label><br>
+          <label for="Email">E-mail Address</label><br>
           <input type="email" id="email" v-model="em" required="required" placeholder="E-mail address">
       </p>
       <p>
-          <label for="Street Name">Street</label><br>
+          <label for="Street Name">Street Name</label><br>
           <input type="text" id="Street Name" v-model="sn" required="required" placeholder="Street name">
       </p>
       <p>
-          <label for="House Number">House</label><br>
+          <label for="House Number">House Number</label><br>
           <input type="text" id="House Number" v-model="hn" required="required" placeholder="House number">
       </p>
       <p>
-          <label for="recipient">Recipient</label><br>
-          <select id="recipient" v-model="rcp">
+          <label for="payment">Payment method</label><br>
+          <select id="payment" v-model="pmt">
             <option>Debit Card</option>
             <option>Swish</option>
             <option>Invoice (Klarna)</option>
@@ -60,7 +60,7 @@
       </p>
     </section>
   </main>
-  <button type="submit">
+  <button type="submit" v-on:click="placeOrder">
       <img src="https://cdn-icons-png.flaticon.com/512/660/660619.png" style = "height:1.5em;">
   </button>
   <footer>
@@ -105,7 +105,7 @@ export default {
         em:'',
         sn:'',
         hn:'',
-        rcp:'',
+        pmt:'',
         gr:''
     }
   },
@@ -122,6 +122,9 @@ export default {
                                 orderItems: ["Beans", "Curry"]
                               }
                  );
+    },
+    placeOrder: function() {
+      console.log([this.fn, this.em, this.sn, this.hn, this.pmt, this.gr])
     }
   }
 }
