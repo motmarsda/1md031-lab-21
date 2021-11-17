@@ -25,25 +25,23 @@
       <p>Please provide the following information</p>
       <p>
           <label for="Name">Full Name</label><br>
-          <input type="text" id="Name" name="fn" required="required" placeholder="First- and Last name">
+          <input type="text" id="Name" v-model="fn" required="required" placeholder="First- and Last name">
       </p>
       <p>
           <label for="Email">E-mail</label><br>
-          <input type="email" id="email" name="em" required="required" placeholder="E-mail address">
+          <input type="email" id="email" v-model="em" required="required" placeholder="E-mail address">
       </p>
       <p>
           <label for="Street Name">Street</label><br>
-          <input type="text" id="Street Name" name="sn" required="required" placeholder="Street name">
+          <input type="text" id="Street Name" v-model="sn" required="required" placeholder="Street name">
       </p>
       <p>
           <label for="House Number">House</label><br>
-          <input type="text" id="House Number" name="hn" required="required" placeholder="House number">
+          <input type="text" id="House Number" v-model="hn" required="required" placeholder="House number">
       </p>
-
       <p>
           <label for="recipient">Recipient</label><br>
-          <select id="recipient" name="rcp">
-            <option selected = "selected;">Credit Card </option>
+          <select id="recipient" v-model="rcp">
             <option>Debit Card</option>
             <option>Swish</option>
             <option>Invoice (Klarna)</option>
@@ -51,13 +49,13 @@
       </p>
       <p>
           <label for="Gender">Gender</label><br>
-          <input type="radio" id="female" name="gr" required="required" value="female" checked="checked">
+          <input type="radio" id="female" v-model="gr" required="required" value="Female">
           <label for="female">Female</label><br>
-          <input type="radio" id="male" name="gr" required="required" value="Male">
+          <input type="radio" id="male" v-model="gr" required="required" value="Male">
           <label for="male">Male</label><br>
-          <input type="radio" id="nonbin" name="gr" required="required" value="Non-binary">
+          <input type="radio" id="nonbin" v-model="gr" required="required" value="Non-binary">
           <label for="nonbin">Non-binary</label><br>
-          <input type="radio" id="undisclose" name="gr" required="required" value="Undisclosed">
+          <input type="radio" id="undisclose" v-model="gr" required="required" value="Undisclosed">
           <label for="undisclosed">Undisclosed</label><br>
       </p>
     </section>
@@ -75,10 +73,13 @@
 <script>
 import Burger from '../components/Burger.vue'
 import io from 'socket.io-client'
+import menu from '../assets/menu.json'
+
+console.log(menu);
 
 const socket = io();
 
-function MenuItem (prodName, imgURL, kCal, cont, fact) {
+/*function MenuItem (prodName, imgURL, kCal, cont, fact) {
   this.name = prodName;
   this.imageURL = imgURL;
   this.calories = kCal;
@@ -86,12 +87,10 @@ function MenuItem (prodName, imgURL, kCal, cont, fact) {
   this.descript = fact;
 }
 
-let burgerSelection = [new MenuItem("The Burning Burger", "https://www.kitchensanctuary.com/wp-content/uploads/2021/05/Double-Cheeseburger-square-FS-42.jpg", 1000, "onion", "CONTAINS FIRE!"),
+const burgerSelection = [new MenuItem("The Burning Burger", "https://www.kitchensanctuary.com/wp-content/uploads/2021/05/Double-Cheeseburger-square-FS-42.jpg", 1000, "onion", "CONTAINS FIRE!"),
                     new MenuItem("The Broken Burger", "https://i2-prod.liverpoolecho.co.uk/incoming/article16554288.ece/ALTERNATES/s1200b/0_KFC-biggest-burger-UK-1676790.jpg", 1200, "vitamins", "Basically Thanksgiving leftovers!"),
                     new MenuItem("The Bleeding Burger", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSKkVVnVelSVQn5udkotyToGxWT3k82h2Nugg&usqp=CAU", 2000, "lactose", "All the calories you need in a day")];
-
-console.log(burgerSelection[2].content);
-console.log("Hitta!");
+*/
 
 export default {
   name: 'Home',
@@ -100,7 +99,14 @@ export default {
   },
   data: function () {
     return {
-        burgers: burgerSelection,
+      //burgers:burgerSelection
+        burgers: menu,
+        fn:'',
+        em:'',
+        sn:'',
+        hn:'',
+        rcp:'',
+        gr:''
     }
   },
   methods: {
