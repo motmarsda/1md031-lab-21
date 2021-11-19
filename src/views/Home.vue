@@ -1,16 +1,12 @@
 <template>
   <header>
-    <img class = "Title" id="TitleImage" src="https://t4.ftcdn.net/jpg/02/68/91/81/240_F_268918105_USFet4mK54AfehjA7zV6M7AkfVr534ZN.jpg">
-    <!--Alternative pic: https://www.tetonart.com/wp-content/uploads/galleries/post-91/full/Bison-beneath-the-Tetons.jpg"-->
-    <!--Alternative pic: https://www.lancebcarter.com/images/xl/WY_ZI0601_005-Panorama.jpg"-->
-    <!--Alternative pic: https://i.pinimg.com/originals/55/ab/a3/55aba32097fd60bfbe104f18333a2300.png-->
-    <h1 class = "Title">Welcome to the Burger Barn</h1>
+    <img class = "Title" id="TitleImage" src="https://cdn03.plentymarkets.com/0oyf0h0zqec7/item/images/48695/full/48695-BrightonLightningPanoSea560SF.jpg">
+    <h1 class = "Title">Welcome to the Shocked Burger</h1>
   </header>
   <main>
     <section id="BurgerSelect">
       <h2>What are you craving today?</h2>
       <p>Our burgers are packed with everything a burger should have; fat, carbs and fantastic taste!</p>
-      <p>We live by one motto: Noone leaves the Burger Barn hungry!</p>
       <!-- The different burgers -->
       <div class="wrapper">
         <Burger v-for="burger in burgers"
@@ -60,7 +56,11 @@
       </p>
       <div class="mapWrap">
         <label> Where should the burgers be delivered?</label>
-        <div id="map" v-on:click="addOrder"></div>
+        <div id="map" v-on:click="addOrder">
+          <div v-bind:style="{left: location.x + 'px', top: location.y + 'px'}">
+            {{T}}
+          </div>
+        </div>
       </div>
     </section>
 
@@ -114,8 +114,9 @@ export default {
         hn:'',
         pmt:'',
         gr:'',
-        orderedBurgers: {}, //doent output a proxyobject
-        location: { x: 0, y: 0}
+        customerInfo: {},
+        orderedBurgers: {},
+        location: {x:0, y:0}
 
     }
   },
@@ -139,10 +140,10 @@ export default {
     },
 
     placeOrder: function() {
-      console.log("Customer: " + [this.fn, this.em, this.sn, this.hn, this.pmt, this.gr]);
-      console.log("Order: " + this.orderedBurgers);
-    },
-
+      this.customerInfo = {fullName: this.fn, email: this.em, street: this.sn, houseNo: this.hn,
+        payment: this.pmt, gender: this.gr},
+      console.log(this.customerInfo, this.orderedBurgers);
+      },
   }
 }
 </script>
@@ -155,8 +156,8 @@ export default {
   }
 
 
-  body{
-    font-family: "Calibri", sans-serif;
+  body {
+    font-family: "Georgia", serif;
     font-size: 1.2em;
   }
 
@@ -196,11 +197,12 @@ export default {
   header > h1 {
     position: absolute;
     padding: 7em 1.1em 7em;
-    margin-top: -9em;
+    margin-top: -8.5em;
+    color: White;
   }
 
   header > img {
-    opacity: 0.80;
+    opacity: 0.90;
     width: 100%;
     height: auto;
   }

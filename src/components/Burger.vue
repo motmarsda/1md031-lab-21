@@ -12,7 +12,7 @@
       <button type="button" v-on:click="subFromOrder">
           <img src="https://cdn3.vectorstock.com/i/1000x1000/13/82/left-arrow-icon-vector-21641382.jpg" style = "height:1em;">
       </button>
-      <span> {{ amountOrdered }}</span>
+      <span> {{ amountOrdered }} </span>
       <button type="button" v-on:click="addToOrder()">
           <img src="https://cdn1.vectorstock.com/i/1000x1000/88/85/right-arrow-icon-vector-21638885.jpg" style = "height:1em;">
       </button>
