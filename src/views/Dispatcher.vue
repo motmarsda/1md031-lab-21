@@ -2,7 +2,9 @@
   <div id="orders">
     <div id="orderList">
       <div v-for="(order, key) in orders" v-bind:key="'order'+key">
-        #{{ key }}: {{ order.orderItems.join(", ") }}
+        <h4>#{{ key }}:</h4>
+        {{ order.customer.fullName +' ('+order.customer.email+', '+order.customer.payment+', '+order.customer.gender+')'}} <br>
+        {{ order.orderItems}}
       </div>
       <button v-on:click="clearQueue">Clear Queue</button>
     </div>
@@ -21,7 +23,8 @@ export default {
   name: 'Dispatcher',
   data: function () {
     return {
-      orders: null
+      orders: null,
+      ordersArray: []
     }
   },
   created: function () {
@@ -31,7 +34,7 @@ export default {
   methods: {
     clearQueue: function () {
       socket.emit('clearQueue');
-    }
+    },
   }
 }
 </script>
@@ -65,4 +68,5 @@ export default {
   height:20px;
   text-align: center;
 }
+
 </style>

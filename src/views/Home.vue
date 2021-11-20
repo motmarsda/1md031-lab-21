@@ -151,7 +151,8 @@ export default {
       socket.emit("addOrder", { orderId: this.getOrderNumber(),
                                 details: { x: this.location.x,
                                            y: this.location.y},
-                                orderItems: ["Beans", "Curry"]
+                                orderItems: this.orderedBurgers,
+                                customer: this.customerInfo
                               }
                  );
       },
@@ -184,9 +185,7 @@ export default {
   button:hover {
     background-color: DarkOrchid;
   }
-
-
-
+  
   .allergy{
     font-weight: Bold;
   }
