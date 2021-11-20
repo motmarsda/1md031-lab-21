@@ -1,7 +1,7 @@
 <template>
   <header>
     <img class = "Title" id="TitleImage" src="https://cdn03.plentymarkets.com/0oyf0h0zqec7/item/images/48695/full/48695-BrightonLightningPanoSea560SF.jpg">
-    <h1 class = "Title">Welcome to the Shocked Burger</h1>
+    <h1 class = "Title">Welcome to the BurgerShock</h1>
   </header>
   <main>
     <section id="BurgerSelect">
@@ -27,14 +27,14 @@
           <label for="Email">E-mail Address</label><br>
           <input type="email" id="email" v-model="em" required="required" placeholder="E-mail address">
       </p>
-      <p>
+      <!-- <p>
           <label for="Street Name">Street Name</label><br>
           <input type="text" id="Street Name" v-model="sn" required="required" placeholder="Street name">
       </p>
       <p>
           <label for="House Number">House Number</label><br>
           <input type="text" id="House Number" v-model="hn" required="required" placeholder="House number">
-      </p>
+      </p> -->
       <p>
           <label for="payment">Payment method</label><br>
           <select id="payment" v-model="pmt">
@@ -56,9 +56,9 @@
       </p>
       <div class="mapWrap">
         <label> Where should the burgers be delivered?</label>
-        <div id="map" v-on:click="addOrder">
+        <div id="map" v-on:click="setLocation">
           <div v-bind:style="{left: location.x + 'px', top: location.y + 'px'}">
-            {{T}}
+            <span>T</span>
           </div>
         </div>
       </div>
@@ -110,8 +110,8 @@ export default {
         burgers: menu,
         fn:'',
         em:'',
-        sn:'',
-        hn:'',
+        //sn:'',
+        //hn:'',
         pmt:'',
         gr:'',
         customerInfo: {},
@@ -127,12 +127,18 @@ export default {
     addOrder: function (event) {
       var offset = {x: event.currentTarget.getBoundingClientRect().left,
                     y: event.currentTarget.getBoundingClientRect().top};
-      socket.emit("addOrder", { orderId: this.getOrderNumber(),
-                                details: { x: event.clientX - 10 - offset.x,
-                                           y: event.clientY - 10 - offset.y },
-                                orderItems: ["Beans", "Curry"]
-                              }
-                 );
+
+      this.location = {
+        x: event.clientX - 10 - offset.x, y: event.clientY - 10 - offset.y
+      }
+    },
+
+    setLocation: function (event) {
+      var offset = {x: event.currentTarget.getBoundingClientRect().left,
+                    y: event.currentTarget.getBoundingClientRect().top};
+      this.location = {
+        x: event.clientX - 10 - offset.x, y: event.clientY - 10 - offset.y
+      }
     },
 
     addToOrder: function (event) {
@@ -140,9 +146,14 @@ export default {
     },
 
     placeOrder: function() {
-      this.customerInfo = {fullName: this.fn, email: this.em, street: this.sn, houseNo: this.hn,
-        payment: this.pmt, gender: this.gr},
+      this.customerInfo = {fullName: this.fn, email: this.em, payment: this.pmt, gender: this.gr},
       console.log(this.customerInfo, this.orderedBurgers);
+      socket.emit("addOrder", { orderId: this.getOrderNumber(),
+                                details: { x: this.location.x,
+                                           y: this.location.y},
+                                orderItems: ["Beans", "Curry"]
+                              }
+                 );
       },
   }
 }
@@ -174,9 +185,7 @@ export default {
     background-color: DarkOrchid;
   }
 
-  .mapWrap{
-    overflow: scroll;
-  }
+
 
   .allergy{
     font-weight: Bold;
@@ -197,7 +206,7 @@ export default {
   header > h1 {
     position: absolute;
     padding: 7em 1.1em 7em;
-    margin-top: -8.5em;
+    margin-top: -10em;
     color: White;
   }
 
@@ -231,6 +240,24 @@ export default {
     display: grid;
     grid-gap: 0.4em;
     grid-template-columns: 33% 33% 33%;
+  }
+
+  .mapWrap {
+    overflow: scroll;
+  }
+
+  #map {
+    position:relative;
+  }
+
+  #map div {
+    position: absolute;
+    background: black;
+    color: white;
+    border-radius: 10px;
+    width:20px;
+    height:20px;
+    text-align: center;
   }
 
 
